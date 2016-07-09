@@ -1,0 +1,7 @@
+C:\RedPay\RedPay\RedPay\obj\Debug\RedPay.csprojResolveAssemblyReference.cache
+C:\RedPay\RedPay\RedPay\bin\Debug\RedPay.dll
+C:\RedPay\RedPay\RedPay\bin\Debug\RedPay.pdb
+C:\RedPay\RedPay\RedPay\bin\Debug\Newtonsoft.Json.dll
+C:\RedPay\RedPay\RedPay\bin\Debug\Newtonsoft.Json.xml
+C:\RedPay\RedPay\RedPay\obj\Debug\RedPay.dll
+C:\RedPay\RedPay\RedPay\obj\Debug\RedPay.pdb
