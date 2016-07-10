@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 
 namespace RedPay
 {
-    public class AESCryptography
+    public static class AESCryptography
     {
-        public byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
+        public static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments. 
             if (plainText == null || plainText.Length <= 0)
@@ -45,7 +45,7 @@ namespace RedPay
             return encrypted;
         }
 
-        public string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
+        public static string DecryptStringFromBytes_Aes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             // Check arguments. 
             if (cipherText == null || cipherText.Length <= 0)
@@ -87,18 +87,7 @@ namespace RedPay
             return plaintext;
         }
 
-        public string GetRandomKey()
-        {
-            //Generate a cryptographic random number.
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] buff = new byte[32];
-            rng.GetNonZeroBytes(buff);
-
-            // Return a Base64 string representation of the random number.
-            return Convert.ToBase64String(buff);
-        }
-
-        private string GetRandomIV()
+        public static string GetRandomIV()
         {
             var random = new byte[16];           // whatever size you want
             var rng = new RNGCryptoServiceProvider();

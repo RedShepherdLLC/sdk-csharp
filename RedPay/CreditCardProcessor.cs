@@ -181,11 +181,10 @@ namespace RedPay
 
             //Set Encrypted Packet Value
             string RequestString = JsonConvert.SerializeObject(req);
-            AESCryptography crypto = new AESCryptography();
             string token = config.AuthToken;
             byte[] key = Convert.FromBase64String(token);
             byte[] IV = Convert.FromBase64String(packet["iv"].ToString());
-            var r = crypto.EncryptStringToBytes_Aes(RequestString, key, IV);
+            var r = AESCryptography.EncryptStringToBytes_Aes(RequestString, key, IV);
             packet["aesData"] = Convert.ToBase64String(r);
 
 
@@ -224,7 +223,7 @@ namespace RedPay
                                 byte[] _cyper = Convert.FromBase64String(responsePacket["aesData"].ToString());
                                 byte[] _iv = Convert.FromBase64String(responsePacket["iv"].ToString());
                                 byte[] _key = Convert.FromBase64String(token);
-                                responseString = crypto.DecryptStringFromBytes_Aes(_cyper, _key, _iv);
+                                responseString = AESCryptography.DecryptStringFromBytes_Aes(_cyper, _key, _iv);
                             }
 
                             if (!string.IsNullOrEmpty(responseString))
