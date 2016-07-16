@@ -26,8 +26,6 @@
 
     public string authCode { get; set; }
 
-    public string processor { get; set; }
-
     public string retryCount { get; set; }
 
     public string avsAddress1 { get; set; }

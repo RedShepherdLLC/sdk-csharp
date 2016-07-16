@@ -1,0 +1,10 @@
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\RedPayTest.exe.config
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\RedPayTest.exe
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\RedPayTest.pdb
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\RedPay.dll
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\Newtonsoft.Json.dll
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\RedPay.pdb
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\bin\Release\Newtonsoft.Json.xml
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\obj\Release\RedPayTest.csprojResolveAssemblyReference.cache
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\obj\Release\RedPayTest.exe
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPayTest\obj\Release\RedPayTest.pdb

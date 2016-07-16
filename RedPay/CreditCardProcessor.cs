@@ -16,43 +16,74 @@ namespace RedPay
             config = c;
         }
 
-        public Tuple<ResponseCode, RedPayResponse, string, string> Purchase(long amount, string cardholdersname,
-            string cardnumber, string ccv, string expdate, string zipcode, string method,
-            string track1Data, string track2Data, string signatureData, string businessid,
-            string clientid, string paymentid, string currency = null, string processor = null)
+        public Tuple<ResponseCode, RedPayResponse, string, string> Purchase(long amount,
+            string cardnumber, string cardholdername, string expdate, string ccv, string zipcode,
+            string track1data = null, string track2data = null, string signaturedata = null, 
+            string avsaddress1 = null, string avsaddress2 = null, string avscity = null, 
+            string cardholderemail = null, string cardholderphone = null, string method = null,
+            string retrycount = null, string employeerefnum = null, string customerrefnum = null, 
+            string orderrefnum = null, string terminalrefnum = null)
         {
             decimal amt = (decimal)amount;
 
             RedPayRequest req = new RedPayRequest();
 
+            //Required
             req.action = "A";
-            req.account = cardnumber;
-            req.expmmyyyy = expdate;
             req.amount = amount;
-            req.avsZip = zipcode;
+            req.account = cardnumber;
+            req.cardHolderName = cardholdername;
+            req.expmmyyyy = expdate;
             req.cvv = ccv;
-            req.method = method;
-            req.cardHolderName = cardholdersname;
-            req.customerRefNum = clientid ?? string.Empty;
-            req.orderRefNum = paymentid ?? string.Empty;
+            req.avsZip = zipcode;
 
             //Optional
-            req.currency = currency ?? "USD";
-            req.processor = processor;
+            if (!string.IsNullOrEmpty(track1data))
+                req.track1Data = track1data;
 
-            if (!string.IsNullOrEmpty(track1Data))
-                req.track1Data = track1Data;
+            if (!string.IsNullOrEmpty(track2data))
+                req.track2Data = track2data;
 
-            if (!string.IsNullOrEmpty(track2Data))
-                req.track2Data = track2Data;
+            if (!string.IsNullOrEmpty(signaturedata))
+                req.signatureData = signaturedata;
 
-            if (!string.IsNullOrEmpty(signatureData))
-                req.signatureData = signatureData;
+            if (!string.IsNullOrEmpty(avsaddress1))
+                req.avsAddress1 = avsaddress1;
+
+            if (!string.IsNullOrEmpty(avsaddress2))
+                req.avsAddress2 = avsaddress2;
+
+            if (!string.IsNullOrEmpty(avscity))
+                req.avsCity = avscity;
+
+            if (!string.IsNullOrEmpty(cardholderemail))
+                req.cardHolderEmail = cardholderemail;
+
+            if (!string.IsNullOrEmpty(cardholderphone))
+                req.cardHolderPhone= cardholderphone;
+
+            if (!string.IsNullOrEmpty(method))
+                req.method = method;
+
+            if (!string.IsNullOrEmpty(retrycount))
+                req.retryCount = retrycount;
+
+            if (!string.IsNullOrEmpty(employeerefnum))
+                req.employeeRefNum = employeerefnum;
+
+            if (!string.IsNullOrEmpty(customerrefnum))
+                req.customerRefNum = customerrefnum;
+
+            if (!string.IsNullOrEmpty(orderrefnum))
+                req.orderRefNum = orderrefnum;
+
+            if (!string.IsNullOrEmpty(terminalrefnum))
+                req.terminalRefNum = terminalrefnum;
 
             return SendEncryptedRequest(req);
         }
        
-        public Tuple<ResponseCode, RedPayResponse, string, string> Refund(Config config, string transactionId, long amount)
+        public Tuple<ResponseCode, RedPayResponse, string, string> Refund(string transactionId, long amount)
         {
             decimal amt = (decimal)amount;
 
@@ -65,15 +96,12 @@ namespace RedPay
             return SendEncryptedRequest(req);
         }
 
-        public Tuple<ResponseCode, RedPayResponse, string, string> Void(Config config, string transactionId, long amount)
+        public Tuple<ResponseCode, RedPayResponse, string, string> Void(string transactionId)
         {
-            decimal amt = (decimal)amount;
-
             RedPayRequest req = new RedPayRequest();
 
             req.transactionId = transactionId;
             req.action = "V";
-            req.amount = amount;
 
             return SendEncryptedRequest(req);
         }

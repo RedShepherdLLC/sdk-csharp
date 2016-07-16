@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cryptography\AESCryptography.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="CreditCardProcessor.cs" />
     <Compile Include="Packet.cs" />
@@ -53,7 +52,6 @@
     <Compile Include="RedPayRequest.cs" />
     <Compile Include="RedPayResponse.cs" />
     <Compile Include="ResponseCode.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,0 +1,7 @@
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Release\RedPay.dll
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Release\RedPay.pdb
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Release\Newtonsoft.Json.dll
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Release\Newtonsoft.Json.xml
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\obj\Release\RedPay.dll
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\obj\Release\RedPay.pdb
+C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\obj\Release\RedPay.csprojResolveAssemblyReference.cache
