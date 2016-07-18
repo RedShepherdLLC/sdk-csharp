@@ -2,10 +2,9 @@
 using System.IO;
 using System.Security.Cryptography;
 
-
 namespace RedPay
 {
-    public static class AESCryptography
+    internal static class AESCryptography
     {
         public static byte[] EncryptStringToBytes_Aes(string plainText, byte[] Key, byte[] IV)
         {

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RedPay
+﻿namespace RedPay
 {
+    /// <summary>
+    /// RedPay API Configuration values
+    /// ApiEndpoint - RedPay assigned URL
+    /// App         - Application name
+    /// AuthToken   - Base64 Key for encryption
+    /// </summary>
     public class Config
     {
-        public string ApiEndpoints;
+        public string ApiEndpoint;
         public string App;
         public string AuthToken;
     }

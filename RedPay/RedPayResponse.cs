@@ -1,4 +1,6 @@
-﻿
+﻿/// <summary>
+/// Represents a response from RedPay
+/// </summary>
 public class RedPayResponse
 {
     public string transferStatus { get; set; }

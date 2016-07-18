@@ -3,90 +3,117 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
 using System.Net;
-using System.Security.Cryptography;
 
 namespace RedPay
 {
-    public class CreditCardProcessor
+    /// <summary>
+    /// RedPay Card Processing API
+    /// </summary>
+    public class CardProcessor
     {
-        Config config;
+        private readonly Config config;
 
-        public CreditCardProcessor(Config c)
+        public CardProcessor(Config c)
         {
             config = c;
         }
 
-        public Tuple<ResponseCode, RedPayResponse, string, string> Purchase(long amount,
-            string cardnumber, string cardholdername, string expdate, string ccv, string zipcode,
-            string track1data = null, string track2data = null, string signaturedata = null, 
-            string avsaddress1 = null, string avsaddress2 = null, string avscity = null, 
-            string cardholderemail = null, string cardholderphone = null, string method = null,
-            string retrycount = null, string employeerefnum = null, string customerrefnum = null, 
-            string orderrefnum = null, string terminalrefnum = null)
+        /// <summary>
+        /// Charge a Card
+        /// </summary>
+        /// <param name="amount">Amount in CENTS</param>
+        /// <param name="account">Card number, All numeric. No dashes or spaces</param>
+        /// <param name="cardHolderName">Name of Cardholder</param>
+        /// <param name="expmmyyyy">Card expiration date. All numeric. No slashes or spaces</param>
+        /// <param name="ccv">Card CVV number. All numeric</param>
+        /// <param name="avsZip">Card zip code. All numeric</param>
+        /// <param name="track1Data">Swiped card data</param>
+        /// <param name="track2Data">Swiped card data</param>
+        /// <param name="signatureData">Stringified signature data</param>
+        /// <param name="avsAddress1">Card address line 1</param>
+        /// <param name="avsAddress2">Card address line 2</param>
+        /// <param name="avsCity">Card city</param>
+        /// <param name="cardHolderEmail">Email address</param>
+        /// <param name="cardHolderPhone">Phone number. All numeric. No dashes or spaces</param>
+        /// <param name="method">CP - card present; CNP - card not present</param>
+        /// <param name="retryCount">1 - retry upon failure or null</param>
+        /// <param name="employeeRefNum">Employee id number</param>
+        /// <param name="customerRefNum">Customer id number</param>
+        /// <param name="orderRefNum">Purchase id number</param>
+        /// <param name="terminalRefNum">Terminal id number</param>
+        /// <returns>RedPayResponse</returns>
+        public RedPayResponse Purchase(long amount,
+            string account, string cardHolderName, string expmmyyyy, string ccv, string avsZip,
+            string track1Data = null, string track2Data = null, string signatureData = null, 
+            string avsAddress1 = null, string avsAddress2 = null, string avsCity = null, 
+            string cardHolderEmail = null, string cardHolderPhone = null, string method = null,
+            string retryCount = null, string employeeRefNum = null, string customerRefNum = null, string orderRefNum = null, string terminalRefNum = null)
         {
-            decimal amt = (decimal)amount;
-
             RedPayRequest req = new RedPayRequest();
 
             //Required
             req.action = "A";
             req.amount = amount;
-            req.account = cardnumber;
-            req.cardHolderName = cardholdername;
-            req.expmmyyyy = expdate;
+            req.account = account;
+            req.cardHolderName = cardHolderName;
+            req.expmmyyyy = expmmyyyy;
             req.cvv = ccv;
-            req.avsZip = zipcode;
+            req.avsZip = avsZip;
 
             //Optional
-            if (!string.IsNullOrEmpty(track1data))
-                req.track1Data = track1data;
+            if (!string.IsNullOrEmpty(track1Data))
+                req.track1Data = track1Data;
 
-            if (!string.IsNullOrEmpty(track2data))
-                req.track2Data = track2data;
+            if (!string.IsNullOrEmpty(track2Data))
+                req.track2Data = track2Data;
 
-            if (!string.IsNullOrEmpty(signaturedata))
-                req.signatureData = signaturedata;
+            if (!string.IsNullOrEmpty(signatureData))
+                req.signatureData = signatureData;
 
-            if (!string.IsNullOrEmpty(avsaddress1))
-                req.avsAddress1 = avsaddress1;
+            if (!string.IsNullOrEmpty(avsAddress1))
+                req.avsAddress1 = avsAddress1;
 
-            if (!string.IsNullOrEmpty(avsaddress2))
-                req.avsAddress2 = avsaddress2;
+            if (!string.IsNullOrEmpty(avsAddress2))
+                req.avsAddress2 = avsAddress2;
 
-            if (!string.IsNullOrEmpty(avscity))
-                req.avsCity = avscity;
+            if (!string.IsNullOrEmpty(avsCity))
+                req.avsCity = avsCity;
 
-            if (!string.IsNullOrEmpty(cardholderemail))
-                req.cardHolderEmail = cardholderemail;
+            if (!string.IsNullOrEmpty(cardHolderEmail))
+                req.cardHolderEmail = cardHolderEmail;
 
-            if (!string.IsNullOrEmpty(cardholderphone))
-                req.cardHolderPhone= cardholderphone;
+            if (!string.IsNullOrEmpty(cardHolderPhone))
+                req.cardHolderPhone= cardHolderPhone;
 
             if (!string.IsNullOrEmpty(method))
                 req.method = method;
 
-            if (!string.IsNullOrEmpty(retrycount))
-                req.retryCount = retrycount;
+            if (!string.IsNullOrEmpty(retryCount))
+                req.retryCount = retryCount;
 
-            if (!string.IsNullOrEmpty(employeerefnum))
-                req.employeeRefNum = employeerefnum;
+            if (!string.IsNullOrEmpty(employeeRefNum))
+                req.employeeRefNum = employeeRefNum;
 
-            if (!string.IsNullOrEmpty(customerrefnum))
-                req.customerRefNum = customerrefnum;
+            if (!string.IsNullOrEmpty(customerRefNum))
+                req.customerRefNum = customerRefNum;
 
-            if (!string.IsNullOrEmpty(orderrefnum))
-                req.orderRefNum = orderrefnum;
+            if (!string.IsNullOrEmpty(orderRefNum))
+                req.orderRefNum = orderRefNum;
 
-            if (!string.IsNullOrEmpty(terminalrefnum))
-                req.terminalRefNum = terminalrefnum;
+            if (!string.IsNullOrEmpty(terminalRefNum))
+                req.terminalRefNum = terminalRefNum;
 
             return SendEncryptedRequest(req);
         }
-       
-        public Tuple<ResponseCode, RedPayResponse, string, string> Refund(string transactionId, long amount)
-        {
-            decimal amt = (decimal)amount;
 
+        /// <summary>
+        /// Refund a charge
+        /// </summary>
+        /// <param name="transactionId">Charge id</param>
+        /// <param name="amount">Amount charged</param>
+        /// <returns>RedPayResponse</returns>
+        public RedPayResponse Refund(string transactionId, long amount)
+        {
             RedPayRequest req = new RedPayRequest();
 
             req.transactionId = transactionId;
@@ -96,7 +123,12 @@ namespace RedPay
             return SendEncryptedRequest(req);
         }
 
-        public Tuple<ResponseCode, RedPayResponse, string, string> Void(string transactionId)
+        /// <summary>
+        /// Void a charge
+        /// </summary>
+        /// <param name="transactionId">Charge id</param>
+        /// <returns>RedPayResponse</returns>
+        public RedPayResponse Void(string transactionId)
         {
             RedPayRequest req = new RedPayRequest();
 
@@ -108,117 +140,26 @@ namespace RedPay
 
         #region Private Methods
 
-        private Tuple<ResponseCode, RedPayResponse, string, string> SendRequest(RedPayRequest req)
+        private RedPayResponse SendEncryptedRequest(RedPayRequest redpayRequest)
         {
-
             string res = string.Empty;
-            ResponseCode resCode = ResponseCode.NotSet;
-            RedPayResponse resp = null;
-
-            string RequestString = JsonConvert.SerializeObject(req);
-            JObject packet = new JObject();
-            packet["app"] = config.App;
-            packet["utcTime"] = DateTime.UtcNow;
-            packet["data"] = JObject.Parse(RequestString);//it should be json object
-
-            string json = JsonConvert.SerializeObject(packet);
-
-            HttpWebRequest web_request = (HttpWebRequest)WebRequest.Create(config.ApiEndpoints + @"/card");
-            web_request.Method = "POST";
-            web_request.Accept = "*/*";
-            web_request.ContentType = "application/json"; //REST XML
-
-            using (StreamWriter stream_writer = new StreamWriter(web_request.GetRequestStream()))
-            {
-                stream_writer.Write(json);
-            }
-
-            string response_string;
-
-            try
-            {
-                using (HttpWebResponse web_response = (HttpWebResponse)web_request.GetResponse())
-                {
-                    using (StreamReader response_stream = new StreamReader(web_response.GetResponseStream()))
-                    {
-                        response_string = response_stream.ReadToEnd();
-                        //string data_string = GetDataString(response_string);
-                        //response is Packet json - Deserialize Packet
-                        JObject responsePacket = JsonConvert.DeserializeObject(response_string) as JObject;
-
-                        if (responsePacket != null && !string.IsNullOrEmpty(response_string))
-                        {
-                            //string responseString = string.Empty;
-                            RedPayResponse response = null;
-
-                            if (responsePacket["data"] != null)
-                                JsonConvert.DeserializeObject<RedPayResponse>(responsePacket["data"].ToString());
-
-                            if (response != null)
-                            {
-                                resp = response;
-                                res = responsePacket["data"].ToString();
-                                resCode = GetResponseCode(resp);
-                            }
-                            else
-                            {
-                                resp = null;
-                                res = null;
-                                resCode = ResponseCode.Error;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                resCode = ResponseCode.Exception;
-                res = ex.ToString();
-                resp = null;
-            }
-
-            return new Tuple<ResponseCode, RedPayResponse, string, string>(resCode, resp, res, RequestString);
-        }
-
-        private string GetDataString(string response_string)
-        {
-            try
-            {
-                int startIndex = response_string.IndexOf("\"data\":") + 7;
-                int endIndex = response_string.IndexOf("},\"iv") + 1;
-
-                return response_string.Substring(startIndex, endIndex - startIndex);
-            }
-            catch (Exception e)
-            {
-                return null;
-            }
-        }
-
-        private Tuple<ResponseCode, RedPayResponse, string, string> SendEncryptedRequest(RedPayRequest req)
-        {
-
-            string res = string.Empty;
-            ResponseCode resCode = ResponseCode.NotSet;
-            RedPayResponse resp = null;
 
             JObject packet = new JObject();
             packet["app"] = config.App;
-            packet["iv"] = GetRandomIV();
+            packet["iv"] = AESCryptography.GetRandomIV();
             packet["utcTime"] = DateTime.UtcNow;
 
             //Set Encrypted Packet Value
-            string RequestString = JsonConvert.SerializeObject(req);
+            string request_string = JsonConvert.SerializeObject(redpayRequest);
             string token = config.AuthToken;
             byte[] key = Convert.FromBase64String(token);
-            byte[] IV = Convert.FromBase64String(packet["iv"].ToString());
-            var r = AESCryptography.EncryptStringToBytes_Aes(RequestString, key, IV);
-            packet["aesData"] = Convert.ToBase64String(r);
-
+            byte[] iv = Convert.FromBase64String(packet["iv"].ToString());
+            byte[] aesData = AESCryptography.EncryptStringToBytes_Aes(request_string, key, iv);
+            packet["aesData"] = Convert.ToBase64String(aesData);
 
             string json = JsonConvert.SerializeObject(packet);
 
-            HttpWebRequest web_request = (HttpWebRequest)WebRequest.Create(config.ApiEndpoints + @"/card");
+            HttpWebRequest web_request = (HttpWebRequest)WebRequest.Create(config.ApiEndpoint + @"/card");
             web_request.Method = "POST";
             web_request.Accept = "*/*";
             web_request.ContentType = "application/json";
@@ -228,7 +169,8 @@ namespace RedPay
                 stream_writer.Write(json);
             }
 
-            string response_string;
+            string response_string = string.Empty;
+            RedPayResponse redpayResponse = null;
 
             try
             {
@@ -243,28 +185,24 @@ namespace RedPay
 
                         if (responsePacket != null)
                         {
-                            string responseString = string.Empty;
-
                             if (responsePacket["aesData"] != null && !string.IsNullOrEmpty(responsePacket["aesData"].ToString()))
                             {
                                 //unencrypt value using iv
                                 byte[] _cyper = Convert.FromBase64String(responsePacket["aesData"].ToString());
                                 byte[] _iv = Convert.FromBase64String(responsePacket["iv"].ToString());
                                 byte[] _key = Convert.FromBase64String(token);
-                                responseString = AESCryptography.DecryptStringFromBytes_Aes(_cyper, _key, _iv);
+                                response_string = AESCryptography.DecryptStringFromBytes_Aes(_cyper, _key, _iv);
                             }
 
-                            if (!string.IsNullOrEmpty(responseString))
+                            // GOOD CASE, WE GOT SOME RESPONSE FROM REDPAY GATEWAY
+                            try
                             {
-                                resp = JsonConvert.DeserializeObject<RedPayResponse>(responseString);
-                                res = responseString;
-                                resCode = GetResponseCode(resp);
+                                if (!string.IsNullOrEmpty(response_string))
+                                    redpayResponse = JsonConvert.DeserializeObject<RedPayResponse>(response_string);
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                resp = null;
-                                res = responsePacket["responseCode"].ToString();
-                                resCode = ResponseCode.Error;
+                                response_string = ex.Message;
                             }
                         }
                     }
@@ -272,89 +210,26 @@ namespace RedPay
             }
             catch (Exception ex)
             {
-                resCode = ResponseCode.Exception;
-                res = ex.ToString();
-                resp = null;
+                response_string = ex.Message;
             }
 
-            return new Tuple<ResponseCode, RedPayResponse, string, string>(resCode, resp, res, RequestString);
-        }
-
-        private ResponseCode GetResponseCode(RedPayResponse resp)
-        {
-            if (resp == null)
-                return ResponseCode.NotSet;
-
-            if (resp.responseCode == null)
-                return ResponseCode.NotSet;
-
-            if (string.IsNullOrEmpty(resp.responseCode))
-                return ResponseCode.NotSet;
-
-            if (string.IsNullOrWhiteSpace(resp.responseCode))
-                return ResponseCode.NotSet;
-
-            switch (resp.responseCode.ToUpper())
+            if(redpayResponse == null)
             {
-                case "A":
-                    return ResponseCode.Approved;
-
-                case "D":
-                    return ResponseCode.Declined;
-
-                case "O":
-                    return ResponseCode.OK;
-
-                //case "P":
-                //    return ResponseCode.Partial;
-
-                case "C":
-                    return ResponseCode.CallForAuthorization;
-
-                case "K":
-                    return ResponseCode.PickupConfiscateCard;
-
-                case "U":
-                    return ResponseCode.Duplicate;
-
-                case "R":
-                    return ResponseCode.Retry;
-
-                case "S":
-                    return ResponseCode.Setup;
-
-                case "T":
-                    return ResponseCode.Timeout;
-
-                case "F":
-                    return ResponseCode.Fraud;
-
-                case "E":
-                    return ResponseCode.Error;
-
-                case "X":
-                    return ResponseCode.Exception;
+                redpayResponse = new RedPayResponse();
+                redpayResponse.responseCode = "X";
+                redpayResponse.text = response_string;
             }
 
-            return ResponseCode.NotSet;
+            return redpayResponse;
         }
 
-        private static string EncodeTo64(string toEncode)
+        private static string EncodeToBase64(string data)
         {
-            byte[] toEncodeAsBytes = System.Text.Encoding.UTF8.GetBytes(toEncode);
+            byte[] utf8EncodedData = System.Text.Encoding.UTF8.GetBytes(data);
 
-            string returnValue = Convert.ToBase64String(toEncodeAsBytes);
+            string base64EncodedData = Convert.ToBase64String(utf8EncodedData);
 
-            return returnValue;
-        }
-
-        private static string GetRandomIV()
-        {
-            var random = new byte[16];           // whatever size you want
-            var rng = new RNGCryptoServiceProvider();
-            rng.GetNonZeroBytes(random);         // Fill with non-zero random bytes
-
-            return Convert.ToBase64String(random);  // convert to a string.
+            return base64EncodedData;
         }
         #endregion
     }
