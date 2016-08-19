@@ -47,4 +47,6 @@
     public string orderRefNum { get; set; }
 
     public string terminalRefNum { get; set; }
+
+    public string productRef { get; set; }
 }
