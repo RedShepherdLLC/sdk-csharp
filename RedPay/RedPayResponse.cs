@@ -1,7 +1,4 @@
-﻿/// <summary>
-/// Represents a response from RedPay
-/// </summary>
-public class RedPayResponse
+﻿public class RedPayResponse
 {
     public string transferStatus { get; set; }
 
@@ -9,7 +6,15 @@ public class RedPayResponse
 
     public string transactionId { get; set; }
 
+    public string batchId { get; set; }
+
     public string authCode { get; set; }
+
+    public string planId { get; set; }
+
+    public string token { get; set; }
+
+    public string softCode { get; set; }
 
     public string cardLevel { get; set; }
 
@@ -31,7 +36,18 @@ public class RedPayResponse
 
     public string text { get; set; }
 
+    public string rawData { get; set; }
+
     public string clientIP { get; set; }
 
+    public string sequenceNumber { get; set; }
+
     public string avsCode { get; set; }
+
+    public string voidId { get; set; }
+
+    public string refundId { get; set; }
+
+    public string preAuthId { get; set; }
 }
+

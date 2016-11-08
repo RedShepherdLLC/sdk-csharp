@@ -47,7 +47,8 @@ namespace RedPay
             string track1Data = null, string track2Data = null, string signatureData = null, 
             string avsAddress1 = null, string avsAddress2 = null, string avsCity = null, 
             string cardHolderEmail = null, string cardHolderPhone = null, string method = null,
-            string retryCount = null, string employeeRefNum = null, string customerRefNum = null, string orderRefNum = null, string terminalRefNum = null)
+            string retryCount = null, string employeeRefNum = null, string customerRefNum = null, string orderRefNum = null, string terminalRefNum = null,
+            string productRef = null, string ref1 = null, string ref2 = null, string ref3 = null, string ref4 = null, string ref5 = null)
         {
             RedPayRequest req = new RedPayRequest();
 
@@ -102,6 +103,24 @@ namespace RedPay
 
             if (!string.IsNullOrEmpty(terminalRefNum))
                 req.terminalRefNum = terminalRefNum;
+
+            if (!string.IsNullOrEmpty(productRef))
+                req.productRef = productRef;
+
+            if (!string.IsNullOrEmpty(ref1))
+                req.ref1 = ref1;
+
+            if (!string.IsNullOrEmpty(ref2))
+                req.ref2 = ref2;
+
+            if (!string.IsNullOrEmpty(ref3))
+                req.ref3 = ref3;
+
+            if (!string.IsNullOrEmpty(ref4))
+                req.ref4 = ref4;
+
+            if (!string.IsNullOrEmpty(ref5))
+                req.ref5 = ref5;
 
             return SendEncryptedRequest(req);
         }

@@ -4,3 +4,10 @@ C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Release\Newtons
 C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Release\Newtonsoft.Json.xml
 C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\obj\Release\RedPay.dll
 C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\obj\Release\RedPay.pdb
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\bin\Release\RedPay.dll
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\bin\Release\RedPay.pdb
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\bin\Release\Newtonsoft.Json.dll
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\bin\Release\Newtonsoft.Json.xml
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\obj\Release\RedPay.csprojResolveAssemblyReference.cache
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\obj\Release\RedPay.dll
+\\mac\Home\Downloads\sdk-csharp-master\RedPay\obj\Release\RedPay.pdb
