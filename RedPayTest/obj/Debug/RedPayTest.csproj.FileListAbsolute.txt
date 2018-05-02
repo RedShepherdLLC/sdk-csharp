@@ -38,3 +38,15 @@ C:\sdk\sdk-csharp\RedPayTest\bin\Debug\Newtonsoft.Json.dll
 C:\sdk\sdk-csharp\RedPayTest\bin\Debug\RedPay.pdb
 C:\sdk\sdk-csharp\RedPayTest\bin\Debug\Newtonsoft.Json.xml
 C:\sdk\sdk-csharp\RedPayTest\obj\Debug\RedPayTest.csprojResolveAssemblyReference.cache
+C:\RedPayNuget\RedPayTest\bin\Debug\RedPayTest.exe.config
+C:\RedPayNuget\RedPayTest\bin\Debug\RedPayTest.exe
+C:\RedPayNuget\RedPayTest\bin\Debug\RedPayTest.pdb
+C:\RedPayNuget\RedPayTest\bin\Debug\RedPay.dll
+C:\RedPayNuget\RedPayTest\bin\Debug\Newtonsoft.Json.dll
+C:\RedPayNuget\RedPayTest\bin\Debug\RedPay.pdb
+C:\RedPayNuget\RedPayTest\bin\Debug\Newtonsoft.Json.xml
+C:\RedPayNuget\RedPayTest\obj\Debug\RedPayTest.csprojResolveAssemblyReference.cache
+C:\RedPayNuget\RedPayTest\obj\Debug\RedPayTest.csproj.CoreCompileInputs.cache
+C:\RedPayNuget\RedPayTest\obj\Debug\RedPayTest.csproj.CopyComplete
+C:\RedPayNuget\RedPayTest\obj\Debug\RedPayTest.exe
+C:\RedPayNuget\RedPayTest\obj\Debug\RedPayTest.pdb

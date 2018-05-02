@@ -19,3 +19,11 @@ C:\Users\redshepherd\Developer\redshepherd\sdk-csharp\RedPay\bin\Debug\Newtonsof
 \\Mac\Home\Downloads\sdk-csharp-master\RedPay\obj\Debug\RedPay.csprojResolveAssemblyReference.cache
 \\Mac\Home\Downloads\sdk-csharp-master\RedPay\obj\Debug\RedPay.dll
 \\Mac\Home\Downloads\sdk-csharp-master\RedPay\obj\Debug\RedPay.pdb
+C:\RedPayNuget\RedPay\bin\Debug\RedPay.dll
+C:\RedPayNuget\RedPay\bin\Debug\RedPay.pdb
+C:\RedPayNuget\RedPay\bin\Debug\Newtonsoft.Json.dll
+C:\RedPayNuget\RedPay\bin\Debug\Newtonsoft.Json.xml
+C:\RedPayNuget\RedPay\obj\Debug\RedPay.csproj.CoreCompileInputs.cache
+C:\RedPayNuget\RedPay\obj\Debug\RedPay.csproj.CopyComplete
+C:\RedPayNuget\RedPay\obj\Debug\RedPay.dll
+C:\RedPayNuget\RedPay\obj\Debug\RedPay.pdb

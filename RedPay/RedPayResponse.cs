@@ -1,7 +1,5 @@
 ﻿public class RedPayResponse
 {
-    public string transferStatus { get; set; }
-
     public string responseCode { get; set; }
 
     public string transactionId { get; set; }
@@ -38,7 +36,7 @@
 
     public string rawData { get; set; }
 
-    public string clientIP { get; set; }
+    public string ipAddress { get; set; }
 
     public string sequenceNumber { get; set; }
 

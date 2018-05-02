@@ -67,7 +67,6 @@ public class RedPayRequest
     public string ref4 { get; set; }
 
     public string ref5 { get; set; }
-
 }
 
 public class PaymentSchedule
