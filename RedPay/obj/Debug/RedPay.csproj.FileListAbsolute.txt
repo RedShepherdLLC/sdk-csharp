@@ -27,3 +27,4 @@ C:\RedPayNuget\RedPay\obj\Debug\RedPay.csproj.CoreCompileInputs.cache
 C:\RedPayNuget\RedPay\obj\Debug\RedPay.csproj.CopyComplete
 C:\RedPayNuget\RedPay\obj\Debug\RedPay.dll
 C:\RedPayNuget\RedPay\obj\Debug\RedPay.pdb
+C:\RedPayNuget\RedPay\obj\Debug\RedPay.csprojResolveAssemblyReference.cache

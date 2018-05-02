@@ -15,7 +15,6 @@ C:\RedPayNuget\RedPay\bin\Release\RedPay.dll
 C:\RedPayNuget\RedPay\bin\Release\RedPay.pdb
 C:\RedPayNuget\RedPay\bin\Release\Newtonsoft.Json.dll
 C:\RedPayNuget\RedPay\bin\Release\Newtonsoft.Json.xml
-C:\RedPayNuget\RedPay\obj\Release\RedPay.csprojResolveAssemblyReference.cache
 C:\RedPayNuget\RedPay\obj\Release\RedPay.csproj.CoreCompileInputs.cache
 C:\RedPayNuget\RedPay\obj\Release\RedPay.csproj.CopyComplete
 C:\RedPayNuget\RedPay\obj\Release\RedPay.dll
